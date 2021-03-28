@@ -31,15 +31,6 @@ for k, v in shoppingList.items():
         else:
             finalList[k1] = v1
 
-frozen = ['frozen veg', 'frozen corn']
-pantry = ['black beans', 'chickpeas', 'passata']
-spices = ['cumin', 'coriander', 'smoked paprika', 'cajun', 'five spice']
-
-woolworths = ['tofu', 'brown rice noodles']
-
-
-
-
 
 print('Recipes chosen:')
 pprint.pprint(shoppingList)
