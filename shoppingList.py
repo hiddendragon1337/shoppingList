@@ -12,16 +12,15 @@ while True:
     print("Please enter the name of a recipe.")
     print("Enter 'Help' for the list of recipes.")
     print("Enter 'Done' to finish and produce the shopping list.")
-    recipeName = input()
+    recipeName = input().lower()
     if recipeName in recipes.keys():
         shoppingList[recipeName] = recipes[recipeName]
-    elif recipeName == "Done":
-        print(shoppingList.keys())
+    elif recipeName == "done":
         break
-    elif recipeName == "Help":
-        print(recipes)
+    elif recipeName == "help":
+        pprint.pprint(list(recipes.keys()))
     else:
-        print("Please enter a valid input.")
+        print("That recipe does not exist. Please try again.")
 
 finalList = {}
 for k, v in shoppingList.items():
@@ -42,12 +41,3 @@ pprint.pprint(finalList)
    .to_csv('dict_file.csv', header=False))
 
 
-
-
-
-
-
-
-
-
-# Write your code here :-)
