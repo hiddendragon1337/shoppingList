@@ -3,21 +3,22 @@ recipeList = {}
 while True:
     print('Enter the name of the recipe in lower case')
     print("Or enter 'Done' to finish")
-    recipeName = input()
-    if recipeName == 'Done':
+    recipeName = input().lower()
+    if recipeName == 'done':
         break
     else:
         recipeList[recipeName] = {}
     while True:
         print("Enter ingredient or enter 'Done' to finish")
-        ingredient = input()
-        if ingredient == 'Done':
+        ingredient = input().lower()
+        if ingredient == 'Done' or ingredient == 'done':
             break
         else:
             print('Enter quantity of ' + ingredient)
-            ingredientQuantity = input()
+            ingredientQuantity = int(input())
             recipeList[recipeName][ingredient] = ingredientQuantity
 
 print(recipeList)
+
 
 
