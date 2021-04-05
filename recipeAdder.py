@@ -1,3 +1,5 @@
+import pandas as pd
+
 recipeList = {}
 
 while True:
@@ -17,8 +19,11 @@ while True:
             print('Enter quantity of ' + ingredient)
             ingredientQuantity = int(input())
             recipeList[recipeName][ingredient] = ingredientQuantity
+            print(recipeList)
 
 print(recipeList)
 
+(pd.DataFrame.from_dict(data=recipeList, orient='index')
+   .to_csv('recipeList.csv', header=False))
 
 
