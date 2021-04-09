@@ -1,8 +1,10 @@
 import pprint
 import pandas as pd
 import xlsxwriter
+import fpdf
+import sys
 
-recipes = {'blackened chicken': {'allspice': 1,
+recipes ={'blackened chicken': {'allspice': 1,
                        'avocado': 1,
                        'chicken breast': 2,
                        'coriander': 1,
@@ -16,6 +18,16 @@ recipes = {'blackened chicken': {'allspice': 1,
                        'spinach': 100,
                        'spring onion': 4,
                        'yellow capsicum': 1},
+ 'bryce': {'almonds': 1,
+           'banana': 4,
+           'cashews': 1,
+           'frozen fruit bryce': 2,
+           'milk bryce': 1,
+           'raisin toast': 1,
+           'tissues': 1,
+           'walnuts': 1,
+           'wheat biscuits': 1,
+           'yoghurt': 3},
  'cajun chicken': {'cajun': 1,
                    'chicken breast': 2,
                    'coriander leaves': 1,
@@ -48,6 +60,24 @@ recipes = {'blackened chicken': {'allspice': 1,
                      'egg': 1,
                      'flour': 250,
                      'lemon': 1},
+ 'chilli con carne': {'balsamic vinegar': 1,
+                      'brown onion': 2,
+                      'carrot': 2,
+                      'celery': 2,
+                      'chickpeas': 1,
+                      'chilli powder': 1,
+                      'chopped tomatoes 800g': 1,
+                      'cinnamon': 1,
+                      'coriander': 1,
+                      'cumin': 1,
+                      'garlic': 1,
+                      'kidney beans': 1,
+                      'lime': 1,
+                      'olive oil': 1,
+                      'pepper': 1,
+                      'red capsicum': 2,
+                      'rice': 1,
+                      'salt': 1},
  'daal curry': {'brown onion': 1,
                 'cherry tomato': 2,
                 'chilli powder': 1,
@@ -125,6 +155,16 @@ recipes = {'blackened chicken': {'allspice': 1,
                  'tamari': 1,
                  'white wine vinegar': 1,
                  'wombok half': 1},
+ 'pea and mint soup': {'brown onion': 2,
+                       'carrot': 2,
+                       'celery': 2,
+                       'frozen peas': 800,
+                       'garlic': 1,
+                       'mint': 1,
+                       'olive oil': 1,
+                       'pepper': 1,
+                       'salt': 1,
+                       'stock': 1},
  'ratatouille': {'balsamic vinegar': 1,
                  'chilli powder': 1,
                  'cumin': 1,
@@ -170,6 +210,17 @@ recipes = {'blackened chicken': {'allspice': 1,
                       'spring onion': 4,
                       'tamari': 1,
                       'white wine vinegar': 1},
+ 'sicilian stew': {'brown onion': 2,
+                   'butternut squash half': 2,
+                   'chickpeas': 1,
+                   'chilli flakes': 1,
+                   'chopped tomates 400g': 1,
+                   'cinnamon': 1,
+                   'coriander': 1,
+                   'couscous 100g': 1,
+                   'olive oil': 1,
+                   'raisins 40g': 1,
+                   'stock': 1},
  'sticky chicken noodles': {'black beans': 1,
                             'brown onion': 1,
                             'brown rice noodles': 1,
@@ -235,6 +286,38 @@ recipes = {'blackened chicken': {'allspice': 1,
                'mustard': 1,
                'red potato 600g': 1,
                'spinach': 100},
+ 'vegan meatballs and pasta': {'balsamic vinegar': 1,
+                               'basil fresh': 1,
+                               'brown onion': 2,
+                               'carrot': 1,
+                               'celery': 1,
+                               'chopped tomates 800g': 1,
+                               'flax meal': 1,
+                               'garlic': 1,
+                               'italian seasoning': 1,
+                               'oats 1/4 cup': 1,
+                               'olive oil': 1,
+                               'pecan 1/2 cup': 1,
+                               'pepper': 1,
+                               'portabello mushrooms 1 cup': 1,
+                               'red chilli': 1,
+                               'salt': 1,
+                               'spaghetti': 250,
+                               'tamari': 1,
+                               'thyme': 1},
+ 'vegeree': {'baby spinach': 200,
+             'cherry tomato': 1,
+             'coriander': 1,
+             'curry powder': 1,
+             'eggs': 4,
+             'frozen peas': 200,
+             'ginger': 1,
+             'lemon': 2,
+             'olive oil': 1,
+             'portabello mushrooms': 3,
+             'red chilli': 2,
+             'rice': 1,
+             'spring onion': 4},
  'veggie chilli': {'avocado': 2,
                    'black beans': 1,
                    'cherry tomato': 1,
@@ -265,14 +348,25 @@ recipes = {'blackened chicken': {'allspice': 1,
                      'rice': 1,
                      'smoked paprika': 1,
                      'tomato': 2,
-                     'yellow capsicum': 1}}
+                     'yellow capsicum': 1},
+ 'vietnamese salmon salad': {'apples PL': 2,
+                             'baby cos 2pk': 1,
+                             'bread': 200,
+                             'cucumber': 1,
+                             'ginger': 1,
+                             'green beans': 200,
+                             'olive oil': 1,
+                             'radishes': 1,
+                             'red chilli': 1,
+                             'salmon 500g': 1,
+                             'soy sauce': 1,
+                             'white wine vinegar': 1}}
 
 shoppingList = {}
-
+print("Enter 'Help' for the list of recipes.")
+print("Enter 'Done' to finish and produce the shopping list.")
 while True:
     print("Please enter the name of a recipe.")
-    print("Enter 'Help' for the list of recipes.")
-    print("Enter 'Done' to finish and produce the shopping list.")
     recipeName = input().lower()
     if recipeName in recipes.keys():
         shoppingList[recipeName] = recipes[recipeName]
@@ -281,7 +375,7 @@ while True:
     elif recipeName == "help":
         pprint.pprint(list(recipes.keys()))
     else:
-        print("That recipe does not exist. Please try again.")
+        print("ERROR! YOU ENTERED AN INVALID RECIPE. Please try again.")
 
 finalList = {}
 for k, v in shoppingList.items():
@@ -293,9 +387,9 @@ for k, v in shoppingList.items():
 
 meatDairyEggs = ['chicken breast', 'salmon 500g', 'salmon 250g', 'egg',
     'peeled cooked prawns 200g','peeled raw prawns 250g', 'squid tubes 400g',
-    'cheese', 'silken tofu 350g', 'hummus', 'butter']
-frozenStuff = ['broad beans 200g', 'frozen peas', 'frozen veg', 'frozen corn']
-pantryStuff = ['mustard', 'flour','white wine vinegar',
+    'cheese', 'silken tofu 350g', 'hummus', 'butter', 'milk bryce', 'yoghurt']
+frozenStuff = ['tissues','broad beans 200g', 'frozen peas', 'frozen veg', 'frozen corn', 'frozen fruit bryce']
+pantryStuff = ['raisin toast','wheat biscuits','mustard', 'flour','white wine vinegar',
     'cholula','maple syrup', 'pineapple rings 227g',
     'tamari', 'cornflour', 'brown rice noodles',
     'black beans', 'tomato paste', 'tabasco',
@@ -314,11 +408,11 @@ spiceStuff = ['cayenne', 'cajun', 'allspice',
     'cumin seeds', 'sesame seeds', 'basil', 'rosemary',
     'bay leaves', 'curry powder', 'cardamom', 'cinnamon']
 
-meatDairyEggsList = {'-': '-'}
-frozenList = {'-': '-'}
-pantryList = {'-': '-'}
-spiceList = {'-': '-'}
-produceList = {'-': '-'}
+meatDairyEggsList = {}
+frozenList = {}
+pantryList = {}
+spiceList = {}
+produceList = {}
 
 for k, v in finalList.items():
     if k in meatDairyEggs:
@@ -347,12 +441,28 @@ for k, v in finalList.items():
         else:
             produceList[k] = v
 
+if meatDairyEggsList == {}:
+    meatDairyEggsList['-'] = '-'
+if frozenList == {}:
+    frozenList['-'] = '-'
+if pantryList == {}:
+    pantryList['-'] = '-'
+if spiceList == {}:
+    spiceList['-'] = '-'
+if produceList == {}:
+    produceList['-'] = '-'
 
-print(meatDairyEggsList)
-print(frozenList)
-print(pantryList)
-print(spiceList)
-print(produceList)
+# print(meatDairyEggsList)
+# print(frozenList)
+# print(pantryList)
+# print(spiceList)
+# print(produceList)
+
+print('Recipes chosen:')
+pprint.pprint(shoppingList)
+
+# print('Final shopping list:')
+# pprint.pprint(finalList)
 
 df1 = pd.DataFrame.from_dict(data=meatDairyEggsList, orient='index')
 df2 = pd.DataFrame.from_dict(data=frozenList, orient='index')
@@ -360,22 +470,17 @@ df3 = pd.DataFrame.from_dict(data=pantryList, orient='index')
 df4 = pd.DataFrame.from_dict(data=spiceList, orient='index')
 df5 = pd.DataFrame.from_dict(data=produceList, orient='index')
 
-# print('Recipes chosen:')
-# pprint.pprint(shoppingList)
-
-# print('Final shopping list:')
-# pprint.pprint(finalList)
-
-writer = pd.ExcelWriter('shopppingList.xlsx', engine='xlsxwriter')
+writer = pd.ExcelWriter('shoppingList.xlsx', engine='xlsxwriter')
 
 df5.to_excel(writer, sheet_name='Sheet1', header=['Produce'])
 df2.to_excel(writer, sheet_name='Sheet1', header=['Frozen'], startcol=3)
-df3.to_excel(writer, sheet_name='Sheet1', header=['Spices'], startrow=(len(frozenList)+2), startcol =3)
-df4.to_excel(writer, sheet_name='Sheet1', header=['Pantry'], startcol=6)
-df1.to_excel(writer, sheet_name='Sheet1', header=['Meats, Eggs and Dairy'], startrow=(len(pantryList)+2), startcol=6)
+df3.to_excel(writer, sheet_name='Sheet1', header=['Pantry'], startrow=(len(frozenList)+2), startcol =3)
+df4.to_excel(writer, sheet_name='Sheet1', header=['Spices'], startcol=6)
+df1.to_excel(writer, sheet_name='Sheet1', header=['Meats, Eggs and Dairy'], startrow=(len(spiceList)+2), startcol=6)
 
 writer.save()
 
-
-
+sys.stdout = open('recipesChosen.txt', 'w')
+pprint.pprint(shoppingList)
+sys.stdout.close()
 
