@@ -748,7 +748,6 @@ pantryStuff = [
     "baking soda",
     "almond butter",
     "weeties",
-    "seeds",
     "olive oil",
     "soy sauce",
     "date sugar",
