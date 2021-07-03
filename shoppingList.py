@@ -438,8 +438,7 @@ recipes = {'blackened chicken': {'allspice': 1,
                       'tamari': 1,
                       'white wine vinegar': 1},
  'sehrish': {'almond butter': 1,
-             'apples': 2,
-             'banana': 3,
+             'banana': 5,
              'bread': 1,
              'egg carton': 1,
              'frozen fruit sehrish': 2,
@@ -651,7 +650,20 @@ recipes = {'blackened chicken': {'allspice': 1,
                              'red chilli': 1,
                              'salmon 500g': 1,
                              'soy sauce': 1,
-                             'white wine vinegar': 1}}
+                             'white wine vinegar': 1},
+ 'shrimp fajitas': {'prawns': 500,
+                    'brown onion': 1,
+                    'red capsicum': 1,
+                    'yellow capsicum': 1,
+                    'lime': 1,
+                    'chilli powder': 1,
+                    'cumin': 1,
+                    'garlic powder': 1,
+                    'paprika': 1,
+                    'oregano': 1,
+                    'avocado': 1,
+                    'flour': 300}}
+
 
 shoppingList = {}
 print("Enter 'Help' for the list of recipes.")
