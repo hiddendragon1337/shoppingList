@@ -681,7 +681,16 @@ recipes = {'blackened chicken': {'allspice': 1,
                     'paprika': 1,
                     'oregano': 1,
                     'avocado': 1,
-                    'flour': 300}}
+                    'flour': 300},
+ 'pan prawns': {'prawns': 600,
+                'asparagus': 2,
+                'corn': 4,
+                'shallots': 6,
+                'garlic': 2,
+                'lemon': 2,
+                'garlic powder': 1,
+                'onion powder': 1,
+                'smoked paprika': 1}}
 
 
 shoppingList = {}
@@ -716,6 +725,7 @@ meatDairyEggs = [
     "salmon 250g",
     "egg",
     "egg carton",
+    "prawns",
     "peeled cooked prawns 200g",
     "peeled raw prawns 250g",
     "squid tubes 400g",
