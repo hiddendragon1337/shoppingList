@@ -28,6 +28,8 @@ recipes = {'blackened chicken': {'allspice': 1,
            'tissues': 1,
            'walnuts': 1,
            'popcorn': 1,
+           'oats': 1,
+           'butter': 1,
            'wheat biscuits': 1,
            'yoghurt': 3},
  'cajun chicken': {'cajun': 1,
@@ -703,13 +705,39 @@ recipes = {'blackened chicken': {'allspice': 1,
                'flour': 300},
  'pan prawns': {'prawns': 600,
                 'asparagus': 2,
-                'corn': 4,
+                'corn': 8,
                 'shallots': 6,
                 'garlic': 2,
-                'lemon': 2,
+                'lemon': 1,
                 'garlic powder': 1,
                 'onion powder': 1,
-                'smoked paprika': 1}}
+                'smoked paprika': 1},
+ 'cajun shrimp': {'onion brown': 1,
+                    'celery': 3,
+                    'capsicum red': 1,
+                    'capsicum green': 1,
+                    'garlic': 1,
+                    'frozen corn 1/2 cup': 1,
+                    'prawns': 450,
+                    'cajun': 1,
+                    'lime': 1,
+                    'cauliflower rice': 1},
+ 'sweet and sour noodles': {'tomato paste': 1,
+                            'cornflour': 1,
+                            'white wine vinegar': 1,
+                            'tamari': 1,
+                            'five spice': 1,
+                            'peaches in juice': 410,
+                            'onion red': 1,
+                            'capsicum red': 1,
+                            'capsicum yellow': 1,
+                            'carrot': 1,
+                            'ginger': 1,
+                            'red chilli': 1,
+                            'frozen peas': 150,
+                            'pak choi': 1,
+                            'brown rice noodles': 1}
+                            }
 
 
 shoppingList = {}
@@ -767,6 +795,7 @@ frozenStuff = [
     "frozen corn 1/2 cup",
     "frozen fruit bryce",
     "frozen fruit sehrish",
+    "cauliflower rice",
     "tissues",
 ]
 
@@ -784,6 +813,7 @@ pantryStuff = [
     "cornflour",
     "brown rice noodles",
     "black beans",
+    "oats",
     "tomato paste",
     "tabasco",
     "pineapple chunks 227g",
@@ -837,7 +867,8 @@ pantryStuff = [
     "spaghetti",
     "flax meal"
     "oats 1/4 cup",
-    "flax meal"
+    "flax meal",
+    "peaches in juice",
 ]
 
 spiceStuff = [
