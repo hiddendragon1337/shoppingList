@@ -21,6 +21,7 @@ recipes = {'blackened chicken': {'allspice': 1,
                        'capsicum yellow': 1},
  'bryce': {'almonds': 1,
            'banana': 4,
+	   'tea coffee': 1,
            'frozen fruit bryce': 2,
            'milk bryce': 1,
            'tissues': 1,
@@ -443,6 +444,7 @@ recipes = {'blackened chicken': {'allspice': 1,
                       'white wine vinegar': 1},
  'sehrish': {'almond butter': 1,
              'banana': 0,
+             'pads': 1,
              'bread': 1,
              'egg carton': 1,
              'frozen fruit sehrish': 2,
@@ -826,11 +828,13 @@ frozenStuff = [
     "frozen fruit bryce",
     "frozen fruit sehrish",
     "cauliflower rice",
+    "pads",
     "tissues",
 ]
 
 pantryStuff = [
     "raisin toast",
+    "tea coffee",
     "miso paste",
     "rice vinegar",
     "wheat biscuits",
@@ -955,9 +959,6 @@ breadStuff = [
     "burger buns",
 ]
 
-householdStuff = [
-    "garbage bags",
-]
 
 meatDairyEggsList = {}
 frozenList = {}
@@ -966,6 +967,36 @@ spiceList = {}
 produceList = {}
 nutList = {}
 breadList = {}
+householdList = {
+    'foil': 1,
+    'plastic wrap': 1,
+    'baking paper': 1,
+    'zip lock bags': 1,
+    'disposable gloves': 1,
+    'garbage bags': 1,
+    'kitchen spray': 1,
+    'dish liquid': 1,
+    'dishwasher tabs': 1,
+    'cerapol': 1,
+    'stainless steel cleaner': 1,
+    'sponges': 1,
+    'freezer bags': 1,
+    'gloves': 1,
+    'cleaning vinegar': 1,
+    'paper towels': 1,
+    'washing powder': 1,
+    'toilet paper': 1,
+    'oxy clean': 1,
+    'toothpaste': 1,
+    'floss': 1,
+    'hand wash refill': 1,
+    'body wash': 1,
+    'shampoo': 1,
+    'condition': 1,
+    'q tips': 1,
+    'make up pads': 1,
+    'cleaning products': 1}
+
 
 for k, v in finalList.items():
     if k in meatDairyEggs:
@@ -1029,6 +1060,8 @@ spiceOD = collections.OrderedDict(sorted(spiceList.items()))
 produceOD = collections.OrderedDict(sorted(produceList.items()))
 nutOD = collections.OrderedDict(sorted(nutList.items()))
 breadOD = collections.OrderedDict(sorted(breadList.items()))
+#householdOD = collections.OrderedDict(sorted(householdList.items()))
+householdOD = householdList
 
 df1 = pd.DataFrame.from_dict(data=meatOD, orient="index")
 df2 = pd.DataFrame.from_dict(data=frozenOD, orient="index")
@@ -1037,6 +1070,7 @@ df4 = pd.DataFrame.from_dict(data=spiceOD, orient="index")
 df5 = pd.DataFrame.from_dict(data=produceOD, orient="index")
 df6 = pd.DataFrame.from_dict(data=nutOD, orient="index")
 df7 = pd.DataFrame.from_dict(data=breadOD, orient="index")
+df8 = pd.DataFrame.from_dict(data=householdOD, orient="index")
 
 writer = pd.ExcelWriter("shoppingList.xlsx", engine="xlsxwriter")
 
@@ -1049,6 +1083,7 @@ df3.to_excel(writer, sheet_name="Sheet1", header=False, startrow=(len(meatDairyE
 df4.to_excel(writer, sheet_name="Sheet1", header=False, startcol=6)
 df7.to_excel(writer, sheet_name="Sheet1", header=False, startrow=(len(spiceList)+2), startcol=6)
 df2.to_excel(writer, sheet_name="Sheet1", header=False, startrow=(len(spiceList) + len(breadList) + 4), startcol=6)
+df8.to_excel(writer, sheet_name="Sheet1", header=False, startrow=(len(spiceList) + len(breadList) + len(frozenList) + 6), startcol=6)
 
 writer.save()
 
