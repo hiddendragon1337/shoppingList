@@ -21,17 +21,14 @@ recipes = {'blackened chicken': {'allspice': 1,
                        'capsicum yellow': 1},
  'bryce': {'almonds': 1,
            'banana': 4,
-	   'tea coffee': 1,
+           'tea coffee': 1,
            'frozen fruit bryce': 2,
            'milk bryce': 1,
            'tissues': 1,
            'walnuts': 1,
            'popcorn': 1,
            'oats': 1,
-	   'bryce greens': 200,
-           'canned lentils': 2,
-	   'balsamic vinegar': 1,
-	   'mustard': 1,
+           'frozen veg bryce': 3,
            'wheat biscuits': 1,
            'yoghurt': 3},
  'cajun chicken': {'cajun': 1,
@@ -224,8 +221,8 @@ recipes = {'blackened chicken': {'allspice': 1,
              'coriander': 1,
              'cucumber': 1,
              'cumin': 1,
+             'gherkins': 4,
              'dried chickpeas 1cup': 1,
-             'flour': 250,
              'green chilli': 1,
              'hummus': 1,
              'lemon': 1,
@@ -827,6 +824,7 @@ frozenStuff = [
     "frozen corn 1/2 cup",
     "frozen fruit bryce",
     "frozen fruit sehrish",
+    "frozen veg bryce",
     "cauliflower rice",
     "pads",
     "tissues",
@@ -1085,7 +1083,7 @@ df7.to_excel(writer, sheet_name="Sheet1", header=False, startrow=(len(spiceList)
 df2.to_excel(writer, sheet_name="Sheet1", header=False, startrow=(len(spiceList) + len(breadList) + 4), startcol=6)
 df8.to_excel(writer, sheet_name="Sheet1", header=False, startrow=(len(spiceList) + len(breadList) + len(frozenList) + 6), startcol=6)
 
-writer.save()
+writer.close()
 
 sys.stdout = open("recipesChosen.txt", "w")
 pprint.pprint(shoppingList)
